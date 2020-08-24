@@ -1,0 +1,283 @@
+nodejs and vuejs
++++++++++++++++++
+======== ส่วนที่ 1=========
+1 introlduction
+2. แนะนำการติดตั้ง ตอนที่ 1
+3. แนะนำการติดตั้ง ตอนที่ 2 - ดาวน์โหลดและติดตั้งโปรแกรม
+4. แนะนำการติดตั้ง ตอนที่ 3 - Extension ที่จำเป็นสำหรับเขียนโปรแกรม
+	- Vetur, Path Autocompletion, IntelliSense for css,
+		Auto Import
+6. สร้างโปรเจค Backend
+	# create folder 
+	 > mkdir Backend
+	 > cd Backend
+	# create package.json file
+	 > npm init -y # หากไม่มี -y ต่อท้าย npm init จะมีคำถามการสร้าง ต่างๆถามขึ้นมา 
+	# create file index.js right cilck newfile name index.js
+	# install package
+	 > npm i --save express
+	 > npm i --save-dev nodemon
+	# switch to index.js create server
+		const express = require('express');
+		const server = express();
+		....
+	# go to package.json add line in "script" start server
+		- "start":"nodemon"
+	# test run server
+		> npm start
+	# index.js add server.get("*",(req,res)=>{req.json({meassage:'test'})});
+		- test go to browser link get url localhost:3000
+7. สร้างโปรเจค Frontend
+	# go root terminal
+		> vue -h #help 
+		? vue create Frontend # Frontend 'F' ตัวใหญ่ ติด Warning ให้เปลี่ยนเป็น ตัวเล็ก
+			select options ve
+			- Manually select features
+			- select features
+				1.Babel
+				2.Router
+				3.Vuex
+				4.Unit Testing
+		> Use history mode for fouter?(...) : Y
+			: ตรงนี้ หากเลือก n เวลา run web page เวลา เปลี่ยน rout จะใช้ เครื่องหมาย '#' 
+			: เลือก Y เวลาเปลี่ยน rout จะใช้เป็น '/'
+		? Pick a unit test solution
+			> Mocha + chai
+		? Where do you prefer placing config for Babel, ESLint, etc.?
+			> In package.json
+	#test unit test
+8. Start โปรเจค Backend และ Frontend ไปพร้อมกัน
+	# root create package.js 
+		> npm init -y
+	# install Concurrently npm เป็น package ที่ใช้ในการ รวมคำสั่ง terminal ได้หลายๆคำสั่งใน บรรทัดเดียว
+		> npm install concurrently --save
+	# package.json add line in block "scripts"
+		-  "scripts": {
+				"start:frontend": "cd Frontend && yarn serve",
+				"start:backend": "cd Backend && npm start",
+				"start": "concurrently \"yarn start:backend\" \"yarn start:frontend\""
+			  },
+		#test run
+		> yarn start
+9. ติดตั้ง Package ที่จำเป็นสำหรับ Backend
+	# หลัก 3 library 
+	1.body-parser ไว้ทำ parse variable เข้ามา ใช้งาน
+	2.express session
+	3.express validator
+	>cd Backend
+	>npm install body-parser --seve
+	>npm install express-session --save
+	>npm install express-validator --save
+10. ตั้งค่า Package ที่จำเป็นสำหรับ Backend
+	#index.js pass line
+	-var bodyParser = require('body-parser')
+		:ให้ client parse variable เข้ามา ในรูปแบบ formdata, json ได้
+		// parse application/x-www-form-urlencoded
+		app.use(bodyParser.urlencoded({ extended: false }))
+		 
+		// parse application/json
+		app.use(bodyParser.json())
+		
+	- const { body, validationResult, check } = require("express-validator");
+		: ใช้ validate try catch
+		//validation variable value client
+		server.post(
+		  "/",
+		  [check("name").not().isEmpty(), check("price").isInt()],
+		  (req, res) => {
+			try {
+			  validationResult(req).throw();
+			  res.json(req.body);
+			} catch (error) {
+			  res.status(400).json(error);
+			}
+		  }
+		);
+	- const expresssession = require("express-session");
+		:ใช้จัดการ session, secret(key),cookie 
+11. ติดตั้ง Package ที่จำเป็นสำหรับ Frontend
+	#axios ไว้ call backend
+	-install bootstrap, axios, jquery
+	>npm install bootstrap --save, yarn add bootstrap
+	>npm install axios --save , yarn add axios
+12. ตั้งค่า Package ที่จำเป็นสำหรับ Frontend
+	-use import bootstrap main.js error แก้ด้วยการ
+		:>npm i bootstrap jquery popper.js
+		: src/main.js
+			- import 'bootstrap'; 
+			- import 'bootstrap/dist/css/bootstrap.min.css';
+	-test bootstrap, jquery
+13. การสร้างฐานข้อมูล MySQL จาก ER Diagram
+14. ติดตั้ง Package ของ MySQL สำหรับ Backend
+	>npm install mysql
+	#config connection string and test connection
+15. แนะแนวการติดตั้ง Adobe XD # ออกแบบ ui frontend ด้วยระบบนี้ และ ทำการ generate tag html
+16. Backend - สร้าง Route
+17. Backend - Validation, Error และ  Middleware
+18. Backend - บันทึกข้อมูลลงฐานข้อมูล , insert data to database
+19. Frontend - สร้าง Route
+20-21. Frontend - สร้างหน้าเว็บจาก UI ตอนที่ 1, 2 
+22. Frontend - ทำ Validation ด้วย VeeValidate : install 
+	>yarn add vee-validate
+23. Frontend - ส่งข้อมูลไปยัง Backend
+24. Backend - สร้าง Route และ Validate
+25. Backend - เชื่อมต่อกับฐานข้อมูล  login page
+26. Frontend - สร้างหน้าเว็บ Login ตาม UI  
+27. Frontend - เชื่อมต่อกับ Backend
+28. Backend - การออกจากระบบ
+29. Frontend - สร้าง Navbar ตาม UI
+30. Frontend - ติดตั้ง Icon Font-awesome และเชื่อมต่อ Backend : 
+	> npm install --save @fortawesome/fontawesome-free #ใช้ไม่ถูก เปลี่ยนก่อน
+	> npm install font-awesome --save
+31. Frontend - ตรวจสอบการเข้าถึงหน้าและการใช้งาน store vuex
+32.  ปรับแต่งหน้าเว็บให้ตรงกับ UI
+33. ปรับแต่งหน้าเว็บ ติดตั้ง Alertifyjs เพื่อทำ popup dialog
+	> npm install alertifyjs --save
+34. Backend - สร้าง Route
+35. Backend - แปลง Base64 String เป็นรูปภาพ
+	> npm install base64-img --save
+36. Backend - ส่วนของการเพิ่มข้อมูล
+37. Backend - ส่วนของการลบข้อมูล
+38. Backend - ส่วนของการแก้ไขข้อมูล
+39. Backend - ส่วนของการแสดงข้อมูลและ Paginatio
+40. Backend - ส่วนของการแสดงข้อมูลและ Search
+41. Frontend - สร้างหน้า Layout โดยใช้ Slot
+42. Frontend - สร้างหน้า Sidebar ใส่ Layout
+43. Frontend - สร้างหน้า Sidebar ปรับแต่ง
+44. Frontend - สร้างหน้ารายการข้อมูลตาม UI
+45. Frontend - สร้างหน้ารายการข้อมูลตาม UI ตอนที่ 2
+46. Frontend - ดึงข้อมูลจาก Backend มาแสดงรายการ
+47. Frontend - ตกแต่งรูปภาพให้อยู่ใน Table แบบ 
+	- set allow path image backend
+48. Frontend - สร้าง Pagination ตอนที่1
+49. Frontend - สร้าง Pagination ตอนที่2
+50. Frontend - สร้าง Search box ตอนที่1
+51. Frontend - สร้าง Search box ตอนที่2
+52. Frontend - สร้าง Search box ตอนที่3
+53. Frontend - การเพิ่มข้อมูล (สร้างหน้า Form)
+54. Frontend - การเพิ่มข้อมูล (การทำ Validation)
+55. Frontend - การเพิ่มและลบข้อมูล
+56. Frontend - การแก้ไขข้อมูล
+57. แก้ไขข้อผิดพลาดก่อนเข้าบทเรียนถัดไป
+58. Backend - Introduction และการสร้าง Route
+59. Backend - Install ESLint ให้ตรวจสอบ Error ช่วยเรา
+	> npm install eslint --save-dev
+	- install ESLint Extension in Backend
+60. Backend - การเพิ่มข้อมูล
+61. Backend - การลบข้อมูล	
+62. Backend - การแก้ไขข้อมูล
+63. Backend - การแสดงข้อมูล Pageination และ Search
+64. Frontend - สร้าง Route และสร้างหน้า ตาม UI
+65. Frontend - การแสดงข้อมูล Pagination และ Search
+66. Frontend - การลบข้อมูล
+67. Frontend - การเพิ่มข้อมูล
+68. Frontend - การแก้ไขข้อมูล
+69. การแก้ไขข้อผิดพลาดเรื่องรูปภาพอัพโหลดเกิน
+===========================
+70. Backend - อธิบายและแก้ไข UI
+71. Backend - แสดงรายการห้องประชุม
+72. Backend - การเพิ่มการจองห้องประชุม สร้าง Route
+73. Backend - การเพิ่มการจองห้องประชุม Custom validation
+74. Backend - การเพิ่มการจองห้องประชุม Insert หลายตารางด้วย Transaction
+	- การใช้ Transaction MySQL ต้องทำการ ประกาศ instance connection ด้วย .createConnection()
+		: โดย จะเปลี่ยน จาก  mysql.createPool({}) =>  mysql.createConnection({})
+75. Backend - แสดงรายละเอียดห้องประชุม
+76. Backend - แสดงรายประวัติการจอง
+77. Frontend - หน้าแสดงรายการห้องประชุมที่จะจอง ตอนที่ 1
+78. Frontend - หน้าแสดงรายการห้องประชุมที่จะจอง ตอนที่ 2
+79. Frontend - หน้าแสดงรายการห้องประชุมที่จะจอง ตอนที่ 3
+80. Frontend - หน้าเพิ่มการจองห้องประชุม สร้าง Modal dialog
+81. Frontend - หน้าเพิ่มการจองห้องประชุม สร้าง Forms
+82. Frontend - หน้าเพิ่มการจองห้องประชุม ทำตัวเปิด ปิด Modal
+83. Frontend - หน้าเพิ่มการจองห้องประชุมดึงข้อมูลอุปกรณ์ห้องประชุม
+84. Frontend - หน้าเพิ่มการจองห้องประชุม Validation
+85. Frontend - หน้าเพิ่มการจองห้องประชุม 
+	: การใช้ javascirpt ..., .map()
+	:computed.equipmentItems()
+	: style word ...
+		{
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+86. Frontend - หน้าเพิ่มการจองห้องประชุม เชื่อมต่อ Backend
+87. Frontend - หน้าแสดงรายละเอียดห้องประชุม เชื่อมต่อ Backend
+88. Frontend - หน้าแสดงรายละเอียดห้องประชุม สร้างหน้าจาก UI
+	- class="img-fluid" : ปรับขนาดรูปภาพให้พอดี
+	-  @onBooking="roomItem = $event" : การ call ข้าม component จาก modal component1 ไปหา modal component2 โดยผ่าน หน้ากลาง
+		-= แต่จะมีปัญหา เนื่องจาก การสั่งปิด modal component1 และ เปิด modal component2 ทันทีเลย  ทำให้ modal component2 ทำงานไม่สมบูรณ์ เพราะ การทำงาน ทับกันของคำสั่งปิด component1 ไปปิด component2
+		-= วิธีแก้ไข set setTimeout(); และ ทำการเก็บ ค่าตัวแปลไว้ก่อนจะส่งไปใช้งานอีกที
+		
+89. Frontend - หน้าแสดงรายละเอียดห้องประชุม แก้ไขข้อผิดพลาด
+90. Frontend - หน้าแสดงประวัติการจองห้องประชุม สร้างหน้าตาม UI
+91. Frontend - หน้าแสดงประวัติการจองห้องประชุม ดึงข้อมูลจาก Backend
+	-หน้าประวัติ มีการ ใช้ class style dynamic ตาม status 
+92. Frontend - หน้าแสดงประวัติการจองห้องประชุม Pagination และ Search
+	- ทำการ เปลี่ยน search box เป็นวันที่ หากเลือกค้นหาจากวันที่
+-----------------------------	
+ส่วน 11:หน้าส่วนของการจองสำหรับผู้ดูแลระบบ	
+93. Backend - แนะนำ UI
+94. Backend - ดึงข้อมูลห้องมาทำ Select
+95. Backend - ดึงข้อมูลการจองแสดงในปฏิทิน
+96. Backend - ดึงข้อมูลการจองห้องประชุม
+97. Backend - อัพเดตสถานะการจอง
+98. Backend - ลบข้อมูลการจอง 
+	: delete cascade
+	: delete header item and detial item
+99. Frontend - สร้างหน้าสร้าง Route
+100. Frontend - ทำ Select box เชื่อมต่อกับ Backend
+101. Frontend - ติดตั้ง Lib ปฏิทิน Fullcalendar
+	: ติดตั้ง package fullcalandar
+	>npm install --save @fullcalendar/vue @fullcalendar/daygrid
+	>npm install --save @fullcalendar/interaction
+	>npm install --save @fullcalendar/timegrid
+102. Frontend - เปลี่ยนภาษาไทยให้ปฏิทิน Fullcalendar	
+103. Frontend - Add ข้อมูลการจองจาก DB ของปฏิทิน
+104. Frontend - สร้างหน้าอนุมัติข้อมูลการจอง
+105. Frontend - Search และ Pagination
+106. Frontend - สร้างปุ่มอัพเดตสถานะการจอง
+107. Frontend - เชื่อมต่อ Backend อัพเดตสถานะการจอง
+108. Frontend - ลบข้อมูลการจอง
+--------------------------------
+ส่วน 12:ส่วนของสิทธิ์การเข้าถึงหน้า
+109. Backend - แนะแนวเริ่มต้น
+110. Backend - สร้างฟังชั่นตรวจสอบสิทธิ์เข้าถึงหน้า
+111. Backend - เช็คสิทธิ์การเข้าถึงหน้าในแต่ละ Route
+112. Frontend - สร้างฟังก์ชั่นเช็คสิทธิ์การเข้าถึงหน้า
+113. Frontend - นำฟังก์ชั่นสิทธิ์การเข้าถึงหน้าไปใช้งาน
+114. Frontend - ตรวจสอบสิทธิ์เพื่อซ่อนหรือแสดง Sidebar
+--------------------------------
+ส่วน 13:ปรับแต่งระบบ แก้ไขข้อผิดพลาด
+115. การ Redirect หน้าหลังจาก Login
+116. การทำ Router link active
+117. Filter และการ Convert format datetime
+	>npm install vue-moment
+	>npm install --save moment-timezone
+118. แก้ไขเรื่องการจองซ้ำกันในช่วงเวลาเดียวกัน
+--------------------------------
+ส่วน 14:การแสดงผลหลายหน้าจอ Responsive web
+119. แนะแนว
+120. หน้า Login และ Register 
+	- css media query 
+121. หน้าห้องประชุมที่จะจองและหน้าประวัติการจอง
+122. Search box และปุ่ม Logout ของ Navbar
+123. ปฏิทินแสดงข้อมูลรายการจองห้องประชุม
+124. หน้าจัดการข้อมูลการจองห้องประชุม
+125. หน้าจัดการข้อมูลอุปกรณ์ห้องประชุม
+126. เรื่องของ Pagination
+127. หน้าจัดการข้อมูลห้องประชุม
+-------------------------------
+ส่วน 15:การ Publish ระบบที่ทำเสร็จแล้ว
+128. EP15-01 การนำโปรเจ็คขึ้น Production - Build Frontend ชี้ที่อยู่ไปที่ Backend
+	- "build": "vue-cli-service build" : run จะได้ folder 'dist' ที่จะนำไปวางที่เครื่อง server
+	- อีกวิธี ทำการ build Frontend แล้ว ให้ สร้าง folder 'dist' ที่  Backend เลย ไม่ต้อง copy > paste โดยใช้
+		 "build": "vue-cli-service build --dest=../Backend/www",	
+129. config Backend ให้แยกระหว่างการ Dev กับ Prod
+	- set backend ให้แสดง หน้า web
+130. เรื่องของ Database : สร้างใหม่ เพื่อเอาขึ้น production ต่างหาก
+131. Build production ง่ายแค่คำสั่งเดียว  
+	: root ติดตั้ง npc
+	> npm install ncp --save
+132. นำระบบสร้างเป็น Docker Image
+	> install extension in vscode
+	> test build imagefile docker name 'meetingroomworkshop:latest'

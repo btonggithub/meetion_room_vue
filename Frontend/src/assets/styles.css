@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400&family=Roboto&display=swap");
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  font-family: "Kanit", sans-serif;
+}
+
+body {
+  background-color: #eeeeee;
+  overflow-y: overlay !important;
+  /*overflow-y: scroll !important;  ทำให้หน้าไม่ขยับเวลามี scroll */
+}
+
+.card,
+.card-header,
+.form-control,
+.btn,
+.alert,
+.page-link,
+.modal-content,
+.fc-button,
+.fc-event {
+  border-radius: 0 !important;
+}
+
+.card {
+  border-color: #17a2b8;
+}
+
+.card-header {
+  color: #ffffff;
+  background-color: #17a2b8;
+}
+
+label {
+  color: #6c757d;
+  font-weight: 300;
+}
+
+.form-control,
+.alert {
+  font-weight: 200;
+}
+
+.alertify .ajs-header,
+.alertify .ajs-footer {
+  color: #17a2b8;
+}
+
+.table th {
+  color: #525b62;
+  font-weight: 400;
+}
+
+.table td {
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: #525b62;
+  vertical-align: middle;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.img-contianer {
+  width: 123px;
+  height: 69px;
+  border: solid 1px #6c757d;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.img-fluid-center {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.img-contianer img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.pagination li.active .page-link {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.page-link,
+.page-link:hover,
+.page-link:focus {
+  color: #17a2b8;
+  box-shadow: none;
+}
+
+.layout > .container {
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
+.fullcalendar a {
+  color: #212529;
+}
+
+.fc-event-title,
+.fc-event-time {
+  color: white;
+  /* font-weight: bold !important; */
+}
+
+.fc-daygrid-dot-event .fc-event-title {
+  font-weight: 300 !important;
+}
+
+.fc-event.allowed {
+  background-color: #28a745;
+}
+
+.fc-event.pending {
+  background-color: #3788d8;
+  border: 1px solid var(--fc-event-border-color, #3788d8);
+}
+
+/* for mobile device */
+@media (max-width: 575.98px) {
+  .table-responsive .table th {
+    white-space: nowrap;
+  }
+
+  /* button header page ...list */
+  .router-link-head {
+    width: 48%;
+  }
+
+  /* calendar page */
+  .fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 1.5em;
+    display: block;
+  }
+  .fc-header-toolbar {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /*  */
+  .no-wrap {
+    white-space: nowrap !important;
+  }
+}

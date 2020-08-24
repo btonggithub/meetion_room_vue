@@ -1,0 +1,22 @@
+{
+  "name": "meeting_room_workshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"yarn start:backend\" \"yarn start:frontend\"",
+    "start:frontend": "cd Frontend && yarn serve",
+    "start:backend": "cd Backend && npm start",
+    "start:prod": "cd Published && npm run start:prod",
+    "build:frontend": "cd Frontend && npm run build",
+    "build:backend": "node .",
+    "build":"yarn build:backend && yarn build:frontend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "ncp": "^2.0.0"
+  }
+}

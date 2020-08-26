@@ -1,0 +1,16 @@
+FROM node:alpine
+# WORKDIR /var/run/www
+WORKDIR /usr/app
+
+# compy
+COPY ./package*.json ./
+
+# install package in jsonfild
+RUN npm install
+
+# COPY source dest
+COPY ./ ./
+
+EXPOSE 3001
+CMD ["yarn", "start:prod"]
+

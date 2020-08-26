@@ -10,7 +10,7 @@ const addres = {
 };
 
 // Is production
-if (process.env.ENV.trim() === 'production') {
+if (process.env.ENV === 'production') {
   addres.host = "mysql_db";
   addres.database = "meeting_room_prod";
   addres.password = "password";

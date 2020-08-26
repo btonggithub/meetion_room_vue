@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+ 
+  meeting_room:
+    build: 
+      context:  .
+      dockerfile: Dockerfile
+    restart: always
+    networks: 
+      - meetings
+    volumes: 
+      - C:\Users\Yun\Documents\ServerDocker\meeting\uploads:/usr/app/uploads
+    ports: 
+      - "3000:3000"
+       
+networks:
+  meetings:

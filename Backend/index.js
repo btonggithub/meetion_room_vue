@@ -1,13 +1,13 @@
 const express = require("express");
 const server = express();
+const cors = require("cors");
 const expresssession = require("express-session");
 const bodyParser = require("body-parser");
 const { body, validationResult, Result } = require("express-validator");
 const config = require("./configs");
-const PORT = 3000;
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
-
+server.use(cors());
 //ตั้งค่าการใช้งาน session ระบบ
 server.use(
   expresssession({
@@ -30,7 +30,7 @@ server.use("/api/uploads", express.static(`${__dirname}/uploads/equipments`));
 server.use("/api/uploads", express.static(`${__dirname}/uploads/rooms`));
 
 // set use frontend
-if (config.isProduction) server.use(express.static(`${__dirname}/www`));
+server.use(express.static(`${__dirname}/www`));
 
 // middleware custom function
 server.use(require("./configs/middleware"));
@@ -38,19 +38,13 @@ server.use(require("./configs/middleware"));
 server.use("/api", require("./routes"));
 
 server.get("*", (req, res) => {
-  console.log(process.env.ENV);
-  if (config.isProduction) return res.sendFile(`${__dirname}/www/index.html`);
-
+  if (process.env.ENV === 'production') return res.sendFile(`${__dirname}/www/index.html`);
   return res.end(`<h1>Backend server is started.</h1>`);
 });
 
-
-
-server.listen(PORT, () => {
-  
-// server.js
-console.log(`Your ENV is ${process.env.ENV}`); // undefined
-
-
-  console.log(`Server is started. Post ${PORT}.`);
+server.listen(process.env.PORT, () => {
+  // server.js
+  console.log(`isproduction : ${config.isProduction}`);
+  console.log(`ENV is ${process.env.ENV}`);
+  console.log(`Server is started. Post ${process.env.PORT}.`);
 });

@@ -281,3 +281,26 @@ nodejs and vuejs
 132. นำระบบสร้างเป็น Docker Image
 	> install extension in vscode
 	> test build imagefile docker name 'meetingroomworkshop:latest'
+
+================= deploy with docker =====================
+1. set mysql_db
+$MEET>cd mysql>
+$meet\mysql>docker-compose build up
+
+2. set web meeting_room
+$MEET>docker build -f Dockerfile . -t meeting_room:1.0
+$MEET>docker run -p 3000:3000 -v /usr/app/node_modules -v C:\Users\Yun\Documents\ServerDocker\meeting\uploads:/usr/app/uploads --network mysql_meetings --name meeting_room meeting_room:1.0
+
+3. all
+$MEET>docker-compose up --build
+-set up database schemas 
+
+4. run and container แยก
+-MySQL
+$MEET>mysql> docker-compose up
+or
+$MEET>docker run --name mysql_db -p 3308:3306 --network meet_meetings -e MYSQL_ROOT_PASSWORD=password -v C:\Users\Yun\Documents\ServerDocker\meeting\mysql:/var/lib/mysql -d mysql:5.7
+-Web app
+$MEET>docker build -f Dockerfile . -t meeting_room:1.0
+$MEET>docker run -p 3000:3000 -v /usr/app/node_modules -v C:\Users\Yun\Documents\ServerDocker\meeting\uploads:/usr/app/uploads --network meet_meetings --name meeting_room meeting_room:1.0
+$MEET>docker run -p 3000:3000 -v /usr/app/node_modules -v C:\Users\Yun\Documents\ServerDocker\meeting\uploads:/usr/app/uploads --network mysql_meetings --name meeting_room meeting_room:1.0

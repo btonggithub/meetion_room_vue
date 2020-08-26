@@ -1,36 +1,30 @@
 const mysql = require("mysql");
 const config = require("./index");
-// const addres = {
-//   host: "127.0.0.1",
-//   user: "root",
-//   password: "password",
-//   database: "meeting_room_prod",
-//   charset: "utf8",
-// };
-
-//Is production
-// if (config.isProduction) {
-// addres.host = "mysql_db";
-// addres.database = "meeting_room_prod";
-// }
-
 const addres = {
-  host: "mysql_db",
+  host: "127.0.0.1",
   user: "root",
-  password: "123456",
+  password: "password",
   database: "meeting_room_prod",
-  charset: "UTF8",
+  charset: "utf8",
+  port: 3308,
 };
+
+// Is production
+if (process.env.ENV.trim() === 'production') {
+  addres.host = "mysql_db";
+  addres.database = "meeting_room_prod";
+  addres.password = "password";
+  addres.port = 3306;
+}
 
 const connection = mysql.createConnection(addres);
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) {
-    console.error('error connecting: ' + err.stack);
+    console.error("error connecting: " + err.stack);
     return;
   }
-
-  console.log('connected as id ' + connection.threadId);
+  console.log("connected as id " + connection.threadId);
 });
 
 module.exports = connection;

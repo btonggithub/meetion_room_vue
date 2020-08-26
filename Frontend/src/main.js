@@ -5,6 +5,7 @@ import router from "./router";
 import VeeValidate from "vee-validate";
 import Layout from "@/components/Layout";
 import FullCalendar from "@fullcalendar/vue";
+
 // style sheet
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";

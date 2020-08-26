@@ -52,7 +52,7 @@ router.post(
       //แปลงข้อมูลรูปภาพ
       req.body.r_image = base64Img
         .imgSync(req.body.r_image, roomDir, `room-${Date.now()}`)
-        .replace(`${roomDir}\\`, "");
+        .replace(`${roomDir}/`, "");
 
       res.json({ message: await service.onCreate(req.body) });
     } catch (error) {
@@ -102,7 +102,7 @@ router.put(
       //แปลงข้อมูลรูปภาพ
       req.body.r_image = base64Img
         .imgSync(req.body.r_image, roomDir, `room-${Date.now()}`)
-        .replace(`${roomDir}\\`, "");
+        .replace(`${roomDir}/`, "");
 
       const updateItem = await service.onUpdate(req.params.id, req.body);
 

@@ -3,6 +3,16 @@ import Vuex from "vuex";
 import Axios from "axios";
 Vue.use(Vuex);
 
+// const isAbsoluteURLRegex = /^(?:\w+:)\/\//; 
+// Axios.interceptors.request.use(async (config) => {
+//   debugger
+//   if (!isAbsoluteURLRegex.test(config.url)) {
+//     config.url = process.env.VUE_APP_NODE_URL + config.url;
+//   }
+//   config.timeout = 10000; // 10 Second
+//   return config;
+// });
+
 export default new Vuex.Store({
   state: {
     user: null,

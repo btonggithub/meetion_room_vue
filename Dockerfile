@@ -1,5 +1,6 @@
-FROM node:12.18.3
-COPY ./Published /var/run/www
-WORKDIR /var/run/www
+FROM node:12-alpine3.10
+COPY ./Published /usr/app
+WORKDIR /usr/app
 EXPOSE 3000
-CMD ["npm", "run", "start:prod"]
+CMD ["yarn", "start:prod"]
+

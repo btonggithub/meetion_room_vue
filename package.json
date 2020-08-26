@@ -10,7 +10,7 @@
     "start:prod": "cd Published && npm run start:prod",
     "build:frontend": "cd Frontend && npm run build",
     "build:backend": "node .",
-    "build":"yarn build:backend && yarn build:frontend"
+    "build": "yarn build:backend && yarn build:frontend"
   },
   "keywords": [],
   "author": "",

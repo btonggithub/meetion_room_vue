@@ -42,11 +42,12 @@ router.post(
       //ตรวจสอบ folder
       if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
       if (!fs.existsSync(equipDir)) fs.mkdirSync(equipDir);
+      // set filenaem
+      let filename = `equip-${Date.now()}`;
       //แปลงข้อมูลรูปภาพ
       req.body.eq_image = base64Img
-        .imgSync(req.body.eq_image, equipDir, `equip-${Date.now()}`)
-        .replace(`${equipDir}\\`, "");
-
+        .imgSync(req.body.eq_image, equipDir, filename)
+        .replace(`${equipDir}/`, "");
       res.json({ message: await service.onCreate(req.body) });
     } catch (error) {
       const delImg = path.join(equipDir, req.body.eq_image || "");
@@ -87,7 +88,7 @@ router.put(
       //แปลงข้อมูลรูปภาพ
       req.body.eq_image = base64Img
         .imgSync(req.body.eq_image, equipDir, `equip-${Date.now()}`)
-        .replace(`${equipDir}\\`, "");
+        .replace(`${equipDir}/`, "");
 
       const updateItem = await service.onUpdate(req.params.id, req.body);
 

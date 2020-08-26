@@ -74,7 +74,7 @@ export default {
         if (!valid) return;
 
         axios
-          .post("api/account/login", this.form)
+          .post("/api/account/login", this.form)
           .then((response) => {
             this.$router.push({ name: "Home" });
           })

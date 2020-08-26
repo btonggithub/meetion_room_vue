@@ -1,7 +1,7 @@
 version: '3.1'
 services:
- 
-  meeting_room:
+   meeting_room:
+    container_name: meeting_room
     build: 
       context:  .
       dockerfile: Dockerfile
@@ -9,7 +9,8 @@ services:
     networks: 
       - meetings
     volumes: 
-      - C:\Users\Yun\Documents\ServerDocker\meeting\uploads:/usr/app/uploads
+      # - C:\Users\Yun\Documents\ServerDocker\meeting\uploads:/usr/app/uploads
+      - /meeting_uploads:/usr/app/uploads
     ports: 
       - "3000:3000"
        

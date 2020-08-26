@@ -14,7 +14,7 @@ if (process.env.ENV.trim() === 'production') {
   addres.host = "mysql_db";
   addres.database = "meeting_room_prod";
   addres.password = "password";
-  addres.port = 3306;
+  addres.port = 3308;
 }
 
 const connection = mysql.createConnection(addres);

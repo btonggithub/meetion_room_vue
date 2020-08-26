@@ -1,6 +1,10 @@
 FROM node:12-alpine3.10
-COPY ./Published /usr/app
 WORKDIR /usr/app
+COPY ./Published/package*.json ./
+RUN npm install
+COPY ./Published ./
 EXPOSE 3000
 CMD ["yarn", "start:prod"]
+
+
 

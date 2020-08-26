@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 const { body, validationResult, Result } = require("express-validator");
 const config = require("./configs");
 const dotenv = require("dotenv");
+
+const PORT = 3000;
+
 dotenv.config();
 server.use(cors());
 //ตั้งค่าการใช้งาน session ระบบ
@@ -42,9 +45,8 @@ server.get("*", (req, res) => {
   return res.end(`<h1>Backend server is started.</h1>`);
 });
 
-server.listen(process.env.PORT, () => {
+server.listen(PORT, () => {
   // server.js
-  console.log(`isproduction : ${config.isProduction}`);
   console.log(`ENV is ${process.env.ENV}`);
-  console.log(`Server is started. Post ${process.env.PORT}.`);
+  console.log(`Server is started. Post ${PORT}.`);
 });

@@ -4,7 +4,7 @@ COPY ./Published/package*.json ./
 RUN npm install
 COPY ./Published ./
 EXPOSE 3000
-CMD ["yarn", "start:prod"]
+CMD ["yarn", "start:pm"]
 
 
 
